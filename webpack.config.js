@@ -1,4 +1,13 @@
 /* eslint-env node */
+const utilCompat = require('util')
+const legacyUtil = require('util/')
+
+for (const [key, value] of Object.entries(legacyUtil)) {
+    if (!(key in utilCompat)) {
+        utilCompat[key] = value
+    }
+}
+
 require('babel-polyfill')
 
 const DojoWebpackPlugin = require("dojo-webpack-plugin")
